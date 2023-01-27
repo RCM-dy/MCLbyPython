@@ -60,20 +60,3 @@ def download(url: str, path: str | None = None, hash_algorithm: str | None = Non
         else:
             with open(path, 'wb') as f:
                 f.write(c)
-def downloadmore(urlpath:dict, hash_algorithm: str | None = None, hash: str | None = None, alljson: bool = False):
-    errordict=dict()
-    for u,p in urlpath.items():
-        try:
-            download(u,p,hash_algorithm,hash,alljson)
-        except KeyboardInterrupt:
-            return
-        except:
-            errordict[u]=p
-    if errordict!={}:
-        for u,p in errordict.items():
-            try:
-                download(u,p,hash_algorithm,hash,alljson)
-            except KeyboardInterrupt:
-                return
-            except:
-                errordict[u]=p
